@@ -1,0 +1,11 @@
+Gyro - sensor
+
++ Cost efficiency
++ Quality
+- Complex
+- Software Development
+
+Safety-critical, non-complex application <-> Non safety-critical, complex application
+RTOS, bare metal(deterministic scheduling) <-> linux, android (No deterministic scheduling)
+
+reference software => BSP (board support package)
