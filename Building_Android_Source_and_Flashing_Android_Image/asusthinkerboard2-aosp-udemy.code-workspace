@@ -1,0 +1,33 @@
+{
+    "folders": [
+        {
+            "name": "VSCodeWorkspace",
+            "path": "."
+        },
+        {
+            "name": "ASUSTinkBoard2_udemy",
+            "path": "/media/mozcelikors/ext4/Android_builds/ASUSTinkerBoard2_udemy"
+        },
+        {
+            "name": "ASUSTinkBoard2_udemy_docs",
+            "path": "/media/mozcelikors/ext4/Android_builds/ASUSTinkerBoard2_udemy_docs"
+        }
+    ],
+    "settings": {
+        "editor.detectIndentation": false,
+        "workbench.tree.ident": 30,
+        "workbench.colorTheme": "Default Light+",
+        "editor.insertSpaces": false,
+        "explorer.autoReveal": false,
+        "git.ignoreLimitWarning": true,
+        "search.followSymlinks": false,
+        "git.enabled": false,
+        "C_Cpp.autocomplete": "Disabled",
+        "workbench.statusBar.visible": false,
+        "search.exclude": {
+            "**/.git": true,
+            "**/.repo": true
+        },
+        "restructuredtext.syntasHighlighting.disabled": true
+    }
+}

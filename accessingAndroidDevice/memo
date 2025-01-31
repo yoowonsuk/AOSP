@@ -1,0 +1,49 @@
+sudo apt-get install minicom
+sudo minicom -s -> serial port settup -> ls /dev/tty* (/dev/ttyUSB0)
+                                      -> Bps/Par/Bits : 115200 8N1
+                                      -> Hardware Flow Control : No
+                                      -> Software Flow Control : No
+
+
+adb root
+adb shell
+adb reboot bootloader
+fastboot devices
+fastboot flash userdata userdata.img
+
+
+adb devices
+=> serial number
+adb shell
+=> / : not root
+=> # : root (su, adb root)
+
+adb shell ls /data
+adb logcat
+adb shell then logcat
+
+adb root bootloader
+=> error: no devices/emulators found
+fastboot devices
+=> no permissions (user in plugdev group; are your udev rules wrong?); see [http://developer.android.com/tools/device.html] fastboot
+sudo nano /etc/udev/rules.d/51-android.rules
+=> SUBSYSTEM=="usb", ATTR{idVendor}=="0451", MODE="0666", GROUP="plugdev"
+=> SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0666", GROUP="plugdev"
+=> SUBSYSTEM=="usb", ATTR{idVendor}=="05c6", MODE="0666", GROUP="plugdev"
+=> remove below two
+=> lsusb 
+As a result => SUBSYSTEM=="usb", ATTR{idVendor}=="0b05", MODE="0666", GROUP="plugdev"
+
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+fastboot devices (adb devices can't be seen)
+cd /out/target/product/Tinker_Board_2/system.img
+fastboot erase system # not working hmm.
+fastboot erase super
+fastboot flash super super.img
+
+(after done)
+fastboot continue or fastboot reboot -> from fastboot mode to adb mode
+in serial command "reboot bootloader" -> from adb mode to fastboot mode  (fastboot devices)
+
+https://github.com/MajeurAndroid/java-adb-remote-screen

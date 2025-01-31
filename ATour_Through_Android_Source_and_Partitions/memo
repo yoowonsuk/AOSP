@@ -1,0 +1,36 @@
+Application -> packages (-> apps)
+Android.mk
+1) LOCAL_STATIC_ANDROID_LIBRARIES : static lib (native c)
+2) LOCAL_STATIC_JAVA_LIBRARIES : static lib (java)
+3) LOCAL_SRC_FILES
+4) LOCAL_USE_AAPT2 : some specific configuration descriptions
+5) include $(BUILD_PACKAGE) : type of build
+
+Android Launcher: 홈 화면 구성, 앱 관리하는 기본 애플리케이션
+
+Android.bp -> soong build system
+1. on top, what type of architect
+2. next properties
+
+Framework -> frameworks
+Android System Services -> system/vendor(custom ones)
+vold is volume daemon
+
+Android Runtime: dalvik / art
+HAL(Hardware Abstraction Layer) : hardware
+hardware/interfaces/audio/5.0/IDevicesFactory.hal (system services will call these)
+hardware/qcom/audio/hal/audio_hw.c
+
+linux native daemons & libraries : external folder
+linux kernel : kernel folder ex) kernel/arch/arm64/boot/dts or kernel/arch/arm64/configs
+
+
+#four more folders
+1. bootable: fastboot is used for flashing device (secondary bootloader) => bootable/recovery/bootloader_message or bootable/recovery/fastboot
+2. build : (out is output) build is what contains the source code for the build systems that are used in the android source
+          source code in build/make or build/soong (usually either one)
+3. cts : compatibility definition document (cdd) => cts/tests/controls/src/android/controls/cts/CtsControlsServiceTest.java
+4. out: build output out/target/product/boardname(Tinker_Board_2)/odb/etc/ or out/target/product/Tinker_Board_2/system/bin
+        and sd card image will be rockdev/Image-WW_Tinker_Board_2/WW_Tinker_Board_2-raw.img
+
+

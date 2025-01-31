@@ -1,0 +1,24 @@
+https://github.com/TinkerBoard2-Android
+manifest
+
+Visual studio code
+directory: VSCodeWorkspace, ASUSTinkerBoard2_udemy
+
+VSCodeWorkspace - .vscode, asusthinkerboard2-aosp-udemy.code-workspace
+
+cd /media/mozcelikors/ext4/Android_Builds/ASUSTinkerBoard2_udemy
+
+ls ~/bin/repo
+https://source.android.com/docs/setup/download
+https://source.android.com/docs/setup/download#installing-repo
+
+rm -rf .repo
+repo init ~~
+repo sync -j6
+
+device/asus/tinker_board_2/WW_Tinker_Board_2.mk
+PRODUCT_NAME => lunch WW_Tinker_Board_2-userdebug
+
+
+balenaEtcher-1.5.122-x64.AppImage -> Flash From file -> rockdev/Image-WW_Tinker_Board_2/WW_Tinker_Board_2-raw.img
+-> select target -> SD card -> Flash!

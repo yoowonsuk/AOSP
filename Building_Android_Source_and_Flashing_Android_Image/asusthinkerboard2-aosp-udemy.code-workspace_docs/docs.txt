@@ -1,0 +1,87 @@
+
+Downloading Source
+####################
+repo init -u https://github.com/TinkerBoard2-Android/manifest.git -b android11-rk3399 -m tinker_board_2-android11-2.0.1.xml
+repo sync
+
+Building U-boot
+####################
+source build/envsetup.sh
+lunch WW_Tinker_Board_2-userdebug
+./build.sh -U
+
+Building Kernel
+####################
+source build/envsetup.sh
+lunch WW_Tinker_Board_2-userdebug
+./build.sh -K
+
+Building Android
+####################
+source build/envsetup.sh
+lunch WW_Tinker_Board_2-userdebug
+./build.sh -A -J 6
+
+Building Complete Image
+####################
+source build/envsetup.sh
+lunch WW_Tinker_Board_2-userdebug
+./build.sh -UKAu -J 6
+
+
+
+In the lecture, build kernel error occurred
+ASUSTinkerBoard2_udemy/kernel/drivers/media/i2c/cam_sensor/cam_imx219.c +1068 => make comments
+//struct device_node *node = dev->of_node; 
+
+
+
+image
+out/target/product/Tinker_Board_2/system.img ... 
+
+linux -> boot partition/root file system partition
+android -> root file system partition is divided into server partitions (vendor.img, system.img, system_ext.img, super.img(product/vendor/odm partition are combined into super image), recovery.img, ramdisk.img, odm.img, product.img, boot.img, dtb.img(device tree image))
+
+other ASUS Tinker Board 2 images
+rock/dev/Image-WW_Tinker_Board_2/WW_Tinker_Board_2-raw.img (SD card image)
+
+
+Installing ADB
+###################
+sudo apt-get install adb
+
+Terminal Access
+#####################
+adb shell
+
+Kernel Config File
+###################
+/media/mozcelikors/ext4/Android_Builds/ASUSTinkerBoard2_udemy/kernel/arch/arm64/configs/tinker_board_2_defconfig
+
+ADB Remote Screen
+##############################
+sudo apt-get install openjdk-8-jre openjdk-8-jre-headless
+java -jar AdbRemoteScreen.jar
+java -jar AdbRemoteScreen.jar /usr/bin/adb (to specify what adb to use when launching)
+
+Add fastboot support for host PC
+##############################
+In host PC, create udev rules:
+sudo nano /etc/udev/rules.d/51-android.rules
+with content:
+SUSSYSTEM=="usb", ATTR(idEvendor}=="0b05", MODE="0666", GROUP="plugdev"
+Restart udev:
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+Go into fastboot mode
+################################
+adb reboot bootloader
+
+Fastboot commands
+#########################
+fastboot devices                               > See available devices in fastboot mode
+fastboot erase <partition_name>                > Erase a partition
+fastboot flash <partition_name> <image_file>   > Flash a partition
+fastboot reboot                                > Reboot into ADB mode
+fastboot continue                              > Continue into ADB mode
